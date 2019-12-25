@@ -33,7 +33,7 @@ public class StandardSpringApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext applicationContext = SpringSupport.run(StandardSpringApplication.class, null);
-        SeminarteilmehmerService seminarteilmehmerService = applicationContext.getBean(SeminarteilmehmerService.class);
+        SerminarteilnehmerService seminarteilmehmerService = applicationContext.getBean(SerminarteilnehmerService.class);
         Seminarteilmehmer seminarteilmehmer = new Seminarteilmehmer();
         seminarteilmehmer.setName("Mohamad Hussain");
         seminarteilmehmer.setMatrikelNummer(7502834L);
