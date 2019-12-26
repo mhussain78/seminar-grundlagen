@@ -2,6 +2,7 @@ package com.mhussain.studium.seminargrundlagen;
 
 
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -32,7 +33,7 @@ public class StandardSpringApplication {
     }
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext applicationContext = SpringSupport.run(StandardSpringApplication.class, null);
+        ConfigurableApplicationContext applicationContext = doRun();
         SerminarteilnehmerService seminarteilmehmerService = applicationContext.getBean(SerminarteilnehmerService.class);
         Seminarteilmehmer seminarteilmehmer = new Seminarteilmehmer();
         seminarteilmehmer.setName("Mohamad Hussain");
@@ -42,6 +43,14 @@ public class StandardSpringApplication {
         seminarteilmehmerService.save(singletonList(seminarteilmehmer));
         Collection<Seminarteilmehmer> seminarteilmehmers = seminarteilmehmerService.findAll();
         Assert.isTrue(seminarteilmehmers.size() == 1, "Die Anzahl der Teilnehmer ist falsch.");
+    }
+
+    private static ConfigurableApplicationContext doRun() {
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
+        applicationContext.register(StandardSpringApplication.class);
+        applicationContext.refresh();
+        applicationContext.start();
+        return applicationContext;
     }
 
 }
