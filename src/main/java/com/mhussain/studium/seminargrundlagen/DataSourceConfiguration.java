@@ -14,9 +14,11 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import javax.sql.DataSource;
 import java.sql.Driver;
 
+// Spring Konfiguration, welche ohne Bedingung aktiviert ist.
 @Configuration
 public class DataSourceConfiguration {
 
+    // Spring Konfiguration, die nur beim Aktivieren des prod Profiles vorhanden ist.
     @Configuration
     @Profile("prod")
     @PropertySource("application-prod.properties")
@@ -34,6 +36,7 @@ public class DataSourceConfiguration {
 
     }
 
+    // Spring Konfiguration, die nur beim Aktivieren des Default Profiles oder ohne Angabe eines speziellen Profiles vorhanden ist.
     @Configuration
     @Profile("default")
     public static class DevelopmentConfiguration {
@@ -45,6 +48,8 @@ public class DataSourceConfiguration {
 
     }
 
+    // Eine Bean Instanz für eine Implementierung von BeanPostProcessor, dessen Methode postProcessAfterInitialization nach Erzeugen jeder Bean Instanz aufgerunfen wird.
+    // Falls es sich bei der übergebenen Instanz um eine Datesource handelt, wird DatabaseInitializer#initialize aufgerufen, um die Datenbank zu initialisieren.
     @Bean
     DataSourcePostProcessor dataSourcePostProcessor() {
         return new DataSourcePostProcessor();
