@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SeminarGrundlagenApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SeminarGrundlagenApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SeminarGrundlagenApplication.class, args);
+    }
 
 }
