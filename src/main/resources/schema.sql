@@ -5,5 +5,6 @@ CREATE TABLE IF NOT EXISTS SEMINARTEILMEHMER
     NAME            varchar(255) NOT NULL,
     EMAIL           varchar(255),
     SEMINAR         varchar(255),
-    PRIMARY KEY (ID)
+    PRIMARY KEY (ID),
+    UNIQUE (MATRIKEL_NUMMER)
 );
