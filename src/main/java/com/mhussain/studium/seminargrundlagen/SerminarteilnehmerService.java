@@ -19,7 +19,7 @@ import java.util.Optional;
 @Service
 public class SerminarteilnehmerService {
 
-    private final RowMapper<Seminarteilmehmer> rowMapper = (rs, i) -> new Seminarteilmehmer(rs.getLong("ID"),
+    private final RowMapper<Seminarteilnehmer> rowMapper = (rs, i) -> new Seminarteilnehmer(rs.getLong("ID"),
             rs.getLong("MATRIKEL_NUMMER"),
             rs.getString("NAME"),
             rs.getString("EMAIL"),
@@ -27,28 +27,28 @@ public class SerminarteilnehmerService {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public Optional<Seminarteilmehmer> findByMatrikelNummer(Long matrikelNummer) {
+    public Optional<Seminarteilnehmer> findByMatrikelNummer(Long matrikelNummer) {
         String sql = "SELECT * FROM SEMINARTEILMEHMER WHERE MATRIKEL_NUMMER = ?";
         return Optional.ofNullable(jdbcTemplate.queryForObject(sql, this.rowMapper, matrikelNummer));
     }
 
-    public Collection<Seminarteilmehmer> findAll() {
+    public Collection<Seminarteilnehmer> findAll() {
         return jdbcTemplate.query("SELECT * FROM SEMINARTEILMEHMER", rowMapper);
     }
 
-    public void save(Collection<Seminarteilmehmer> seminarteilmehmers) {
+    public void save(Collection<Seminarteilnehmer> seminarteilnehmers) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        for (Seminarteilmehmer seminarteilmehmer : seminarteilmehmers) {
+        for (Seminarteilnehmer seminarteilnehmer : seminarteilnehmers) {
             jdbcTemplate.update(connection -> {
                 PreparedStatement ps = connection.prepareStatement("INSERT INTO SEMINARTEILMEHMER (MATRIKEL_NUMMER, NAME, EMAIL, SEMINAR) VALUES(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-                ps.setLong(1, seminarteilmehmer.getMatrikelNummer());
-                ps.setString(2, seminarteilmehmer.getName());
-                ps.setString(3, seminarteilmehmer.getEmail());
-                ps.setString(4, seminarteilmehmer.getSeminar());
+                ps.setLong(1, seminarteilnehmer.getMatrikelNummer());
+                ps.setString(2, seminarteilnehmer.getName());
+                ps.setString(3, seminarteilnehmer.getEmail());
+                ps.setString(4, seminarteilnehmer.getSeminar());
                 return ps;
             }, keyHolder);
             long id = Objects.requireNonNull(keyHolder.getKey()).longValue();
-            seminarteilmehmer.setId(id);
+            seminarteilnehmer.setId(id);
         }
     }
 

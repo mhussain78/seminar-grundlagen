@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Seminarteilmehmer {
+public class Seminarteilnehmer {
 
     private Long id;
 

@@ -35,14 +35,14 @@ public class StandardSpringApplication {
     public static void main(String[] args) {
         ConfigurableApplicationContext applicationContext = doRun();
         SerminarteilnehmerService seminarteilmehmerService = applicationContext.getBean(SerminarteilnehmerService.class);
-        Seminarteilmehmer seminarteilmehmer = new Seminarteilmehmer();
-        seminarteilmehmer.setName("Mohamad Hussain");
-        seminarteilmehmer.setMatrikelNummer(7502834L);
-        seminarteilmehmer.setSeminar("Spring Reactive Programming");
-        seminarteilmehmer.setEmail("inf.mhussain@googlemail.com");
-        seminarteilmehmerService.save(singletonList(seminarteilmehmer));
-        Collection<Seminarteilmehmer> seminarteilmehmers = seminarteilmehmerService.findAll();
-        Assert.isTrue(seminarteilmehmers.size() == 1, "Die Anzahl der Teilnehmer ist falsch.");
+        Seminarteilnehmer seminarteilnehmer = new Seminarteilnehmer();
+        seminarteilnehmer.setName("Mohamad Hussain");
+        seminarteilnehmer.setMatrikelNummer(7502834L);
+        seminarteilnehmer.setSeminar("Spring Reactive Programming");
+        seminarteilnehmer.setEmail("inf.mhussain@googlemail.com");
+        seminarteilmehmerService.save(singletonList(seminarteilnehmer));
+        Collection<Seminarteilnehmer> seminarteilnehmers = seminarteilmehmerService.findAll();
+        Assert.isTrue(seminarteilnehmers.size() == 1, "Die Anzahl der Teilnehmer ist falsch.");
     }
 
     private static ConfigurableApplicationContext doRun() {

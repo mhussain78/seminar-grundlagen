@@ -20,19 +20,19 @@ public class SemnarteilnehmerController {
     private final SerminarteilnehmerService serminarteilnehmerService;
 
     @RequestMapping(method = GET)
-    public Collection<Seminarteilmehmer> findAll() {
+    public Collection<Seminarteilnehmer> findAll() {
         return serminarteilnehmerService.findAll();
     }
 
     @RequestMapping(method = GET, path = "findByMatrikelnummer/{matrikelNummer}")
-    public Seminarteilmehmer findByMatrikelnummer(@PathVariable("matrikelNummer") Long matrikelNummer) {
+    public Seminarteilnehmer findByMatrikelnummer(@PathVariable("matrikelNummer") Long matrikelNummer) {
         return serminarteilnehmerService.findByMatrikelNummer(matrikelNummer)
                 .orElseThrow(() -> new IllegalArgumentException("Es konnte kein Seminarteilmehmer mit der Matrikelnummer: " + matrikelNummer + " gefunden werden!"));
     }
 
     @RequestMapping(method = POST)
-    public void create(@RequestBody Seminarteilmehmer seminarteilmehmer) {
-        serminarteilnehmerService.save(Collections.singletonList(seminarteilmehmer));
+    public void create(@RequestBody Seminarteilnehmer seminarteilnehmer) {
+        serminarteilnehmerService.save(Collections.singletonList(seminarteilnehmer));
     }
 
 }
