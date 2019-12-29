@@ -13,9 +13,9 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RequiredArgsConstructor
-@RequestMapping(path = "serminateilnehmer")
+@RequestMapping(path = "serminarteilnehmer")
 @RestController
-public class SemnarteilnehmerController {
+public class SeminarteilnehmerController {
 
     private final SerminarteilnehmerService serminarteilnehmerService;
 
