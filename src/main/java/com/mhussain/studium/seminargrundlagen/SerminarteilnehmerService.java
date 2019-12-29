@@ -28,19 +28,19 @@ public class SerminarteilnehmerService {
     private final JdbcTemplate jdbcTemplate;
 
     public Optional<Seminarteilnehmer> findByMatrikelNummer(Long matrikelNummer) {
-        String sql = "SELECT * FROM SEMINARTEILMEHMER WHERE MATRIKEL_NUMMER = ?";
+        String sql = "SELECT * FROM SEMINARTEILNEHMER WHERE MATRIKEL_NUMMER = ?";
         return Optional.ofNullable(jdbcTemplate.queryForObject(sql, this.rowMapper, matrikelNummer));
     }
 
     public Collection<Seminarteilnehmer> findAll() {
-        return jdbcTemplate.query("SELECT * FROM SEMINARTEILMEHMER", rowMapper);
+        return jdbcTemplate.query("SELECT * FROM SEMINARTEILNEHMER", rowMapper);
     }
 
     public void save(Collection<Seminarteilnehmer> seminarteilnehmers) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         for (Seminarteilnehmer seminarteilnehmer : seminarteilnehmers) {
             jdbcTemplate.update(connection -> {
-                PreparedStatement ps = connection.prepareStatement("INSERT INTO SEMINARTEILMEHMER (MATRIKEL_NUMMER, NAME, EMAIL, SEMINAR) VALUES(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+                PreparedStatement ps = connection.prepareStatement("INSERT INTO SEMINARTEILNEHMER (MATRIKEL_NUMMER, NAME, EMAIL, SEMINAR) VALUES(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
                 ps.setLong(1, seminarteilnehmer.getMatrikelNummer());
                 ps.setString(2, seminarteilnehmer.getName());
                 ps.setString(3, seminarteilnehmer.getEmail());
