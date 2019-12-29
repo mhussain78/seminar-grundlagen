@@ -17,7 +17,7 @@ import java.util.Optional;
 @Transactional
 @RequiredArgsConstructor
 @Service
-public class SerminarteilnehmerService {
+public class SeminarteilnehmerService {
 
     private final RowMapper<Seminarteilnehmer> rowMapper = (rs, i) -> new Seminarteilnehmer(rs.getLong("ID"),
             rs.getLong("MATRIKEL_NUMMER"),

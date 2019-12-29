@@ -34,7 +34,7 @@ public class StandardSpringApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext applicationContext = doRun();
-        SerminarteilnehmerService seminarteilmehmerService = applicationContext.getBean(SerminarteilnehmerService.class);
+        SeminarteilnehmerService seminarteilmehmerService = applicationContext.getBean(SeminarteilnehmerService.class);
         Seminarteilnehmer seminarteilnehmer = new Seminarteilnehmer();
         seminarteilnehmer.setName("Mohamad Hussain");
         seminarteilnehmer.setMatrikelNummer(7502834L);

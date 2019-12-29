@@ -17,22 +17,22 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @RestController
 public class SeminarteilnehmerController {
 
-    private final SerminarteilnehmerService serminarteilnehmerService;
+    private final SeminarteilnehmerService seminarteilnehmerService;
 
     @RequestMapping(method = GET)
     public Collection<Seminarteilnehmer> findAll() {
-        return serminarteilnehmerService.findAll();
+        return seminarteilnehmerService.findAll();
     }
 
     @RequestMapping(method = GET, path = "findByMatrikelnummer/{matrikelNummer}")
     public Seminarteilnehmer findByMatrikelnummer(@PathVariable("matrikelNummer") Long matrikelNummer) {
-        return serminarteilnehmerService.findByMatrikelNummer(matrikelNummer)
+        return seminarteilnehmerService.findByMatrikelNummer(matrikelNummer)
                 .orElseThrow(() -> new IllegalArgumentException("Es konnte kein Seminarteilmehmer mit der Matrikelnummer: " + matrikelNummer + " gefunden werden!"));
     }
 
     @RequestMapping(method = POST)
     public void create(@RequestBody Seminarteilnehmer seminarteilnehmer) {
-        serminarteilnehmerService.save(Collections.singletonList(seminarteilnehmer));
+        seminarteilnehmerService.save(Collections.singletonList(seminarteilnehmer));
     }
 
 }
